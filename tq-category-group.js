@@ -189,6 +189,7 @@
         "disabled",
         "selected-keys",
         "selection-mode",
+        "arrow",
       ];
     }
     connectedCallback() {
@@ -202,7 +203,8 @@
         name === "size" ||
         name === "disabled" ||
         name === "selected-keys" ||
-        name === "selection-mode"
+        name === "selection-mode" ||
+        name === "arrow"
       ) {
         if (name === "selected-keys") this._parseSelectedKeys();
         this._render();
@@ -255,6 +257,7 @@
       var variants = buildVariantStyles();
       var disabledStyles = buildDisabledStyles();
       var items = this.group;
+      var showArrow = this.hasAttribute("arrow");
       var html = items
         .map(
           function (item, index) {
@@ -268,6 +271,15 @@
                 : variants[variant];
             var safeKey = String(key).replace(/"/g, "&quot;");
             var safeLabel = escapeHtml(item.label || "");
+            var iconClass =
+              "tq-category__icon" + (isSelected ? " tq-category__icon--active" : "");
+            var arrowSvg =
+              showArrow
+                ? '<svg class="' +
+                  iconClass +
+                  '" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.52912 9.80476C7.78943 10.0651 8.21217 10.0651 8.47248 9.80476L11.138 7.13914C11.3296 6.94755 11.3858 6.66224 11.2817 6.41234C11.1776 6.16244 10.936 6 10.6653 6L5.3342 6.00208C5.06557 6.00208 4.82192 6.16452 4.71779 6.41442C4.61367 6.66432 4.67198 6.94963 4.86149 7.14122L7.52704 9.80685L7.52912 9.80476Z" fill="currentColor"/></svg>'
+                : "";
+            var iconPart = arrowSvg;
             return (
               '<button type="button" class="tq-category tq-category--' +
               variant +
@@ -283,7 +295,9 @@
               vs +
               '"><span class="tq-category__overlay" aria-hidden="true"></span><span class="tq-category__content"><span class="tq-category__label">' +
               safeLabel +
-              "</span></span></button>"
+              "</span>" +
+              iconPart +
+              "</span></button>"
             );
           }.bind(this)
         )
@@ -319,7 +333,7 @@
         labelTypo.fontWeight +
         ";line-height:" +
         labelTypo.lineHeight +
-        ";white-space:nowrap;padding:0 2px}";
+        ";white-space:nowrap;padding:0 2px}.tq-category__icon{flex-shrink:0;margin-left:4px;transition:transform .25s ease}.tq-category__icon--active{transform:rotate(180deg)}";
       this.shadowRoot.innerHTML =
         "<style>" +
         styles +

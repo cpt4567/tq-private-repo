@@ -21,10 +21,16 @@
 |------|------|--------|------|
 | `group` | JSON string | `[]` | `[{label, value}, ...]` 배열 |
 | `outline` | boolean | - | outline 스타일 (속성 존재 시) |
+| `arrow` | boolean | - | 라벨 오른쪽에 드롭다운 화살표 표시 (속성 존재 시) |
 | `size` | string | `"medium"` | `small`, `medium`, `large`, `xlarge` |
 | `disabled` | boolean | - | 비활성화 |
 | `selected-keys` | JSON string | - | 선택된 value 배열 `["all"]` |
 | `selection-mode` | string | `"multiple"` | `single`, `multiple` |
+
+### arrow 속성
+
+- `arrow` 속성이 있을 때만 화살표 아이콘이 표시됩니다.
+- 선택(활성화) 시 화살표가 180° 회전 애니메이션으로 부드럽게 전환됩니다.
 
 ## 이벤트
 
@@ -46,6 +52,14 @@
   outline
   size="small"
   group='[{"label":"전체","value":"all"},{"label":"캠핑","value":"camping"}]'
+></tq-category-group>
+
+<!-- 화살표 포함 (드롭다운/선택 시 회전 애니메이션) -->
+<tq-category-group
+  outline
+  arrow
+  size="medium"
+  group='[{"label":"관심지역선택","value":"all"}]'
 ></tq-category-group>
 ```
 

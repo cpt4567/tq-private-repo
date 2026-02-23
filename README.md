@@ -33,6 +33,8 @@
 | Tooltip            | `tq-tooltip`            | 툴팁 (Tippy.js)                                        | [📄](docs/tq-tooltip.md)            |
 | Bottom Navigation  | `tq-bottom-navigation`  | 하단 네비게이션                                        | [📄](docs/tq-bottom-navigation.md)  |
 | Top Navigation     | `tq-top-navigation`     | 상단 네비게이션                                        | [📄](docs/tq-top-navigation.md)     |
+| Thumbnail          | `tq-thumbnail`          | 썸네일 (152×114, padding 8px)                         | [📄](docs/tq-thumbnail.md)         |
+| Card Swiper        | `tq-card-swiper`       | 카드/썸네일 가로 스크롤 (Swiper)                       | [📄](docs/tq-card-swiper.md)      |
 
 ## Installation
 
@@ -87,6 +89,7 @@ cd tq-shadow-components
 ├── docs/                  # 컴포넌트별 상세 문서
 │   ├── tq-button.md
 │   ├── tq-badge.md
+│   ├── outer-wall.md      # outer-wall 레이아웃 패턴
 │   ├── tq-category-group.md
 │   ├── tq-camp-card.md
 │   ├── tq-accommodation-card.md
@@ -94,7 +97,8 @@ cd tq-shadow-components
 │   ├── tq-banner-carousel.md
 │   ├── tq-tooltip.md
 │   ├── tq-bottom-navigation.md
-│   └── tq-top-navigation.md
+│   ├── tq-top-navigation.md
+│   └── tq-thumbnail.md
 ├── tokens.js              # 디자인 토큰 (필수)
 ├── shadow-dom.html        # 컴포넌트 데모 페이지
 ├── outer-wall.html        # 외벽 레이아웃 데모
@@ -107,7 +111,8 @@ cd tq-shadow-components
 ├── tq-banner-carousel.js  # Swiper CDN 동적 로드
 ├── tq-tooltip.js          # Tippy.js + Popper CDN 동적 로드
 ├── tq-bottom-navigation.js
-└── tq-top-navigation.js
+├── tq-top-navigation.js
+└── tq-thumbnail.js
 ```
 
 ## Dependencies

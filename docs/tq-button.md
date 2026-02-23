@@ -19,6 +19,14 @@
 | `type` | string | `"primary"` | `primary`, `secondary`, `assistive` |
 | `size` | string | `"large"` | `small`, `medium`, `large` |
 | `disabled` | boolean | - | 비활성화 (속성 존재 시) |
+| `text-color` | string | - | 텍스트 색상 오버라이드 (예: `#000`, `#FF4802`) |
+| `full-width` | boolean | - | 버튼 전체 너비 사용 (속성 존재 시) |
+
+## 슬롯 (Slots)
+
+| 슬롯명 | 설명 |
+|--------|------|
+| (default) | 버튼 텍스트 또는 자식 요소 |
 
 ## 예시
 
@@ -37,6 +45,12 @@
 
 <!-- Disabled -->
 <tq-button variant="solid" type="primary" size="large" disabled>Disabled</tq-button>
+
+<!-- 텍스트 색상 커스텀 -->
+<tq-button variant="outlined" type="assistive" size="medium" text-color="#000">검정 텍스트</tq-button>
+
+<!-- 전체 너비 -->
+<tq-button variant="outlined" type="assistive" size="medium" text-color="#000" full-width>숙소 추천 전체보기</tq-button>
 ```
 
 ## 의존성

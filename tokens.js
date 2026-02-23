@@ -132,6 +132,11 @@
         fontWeight: 500,
         lineHeight: "127.3%",
       },
+      "caption-two-bold": {
+        fontSize: "11px",
+        fontWeight: 600,
+        lineHeight: "127.3%",
+      },
       "label-two-medium": {
         fontSize: "13px",
         fontWeight: 500,

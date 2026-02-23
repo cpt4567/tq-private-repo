@@ -12,12 +12,6 @@
     t = tokens.typography,
     i = tokens.interaction;
 
-  function escapeHtml(text) {
-    var div = document.createElement("div");
-    div.textContent = text;
-    return div.innerHTML;
-  }
-
   function getTypographyCSS(name) {
     var typo = t[name] || t["body-two-normal-bold"];
     return (
@@ -39,12 +33,19 @@
       super();
       this.attachShadow({ mode: "open" });
     }
-    connectedCallback() {
+    static get observedAttributes() {
+      return ["variant", "type", "size", "disabled", "text-color", "full-width"];
+    }
+    attributeChangedCallback() {
+      if (this.shadowRoot) this._render();
+    }
+    _render() {
       var variant = this.getAttribute("variant") || "solid";
       var type = this.getAttribute("type") || "primary";
       var size = this.getAttribute("size") || "large";
       var disabled = this.hasAttribute("disabled");
-      var label = (this.textContent || "").trim();
+      var textColor = this.getAttribute("text-color") || "";
+      var fullWidth = this.hasAttribute("full-width");
 
       var sizeSpec = {
         small: { py: s[7], px: s[14], radius: r[8], typo: "label-two-bold" },
@@ -211,6 +212,8 @@
           : type === "secondary"
             ? "secondary"
             : "assistive";
+      var colorOverride = textColor ? ".tq-btn{color:" + textColor + "!important}" : "";
+      var widthOverride = fullWidth ? ".tq-btn{width:100%;display:flex}" : "";
       var styles =
         base +
         sizeStyles +
@@ -226,7 +229,9 @@
         type +
         ":disabled{" +
         (vs[tk + "Disabled"] || vs[tk] || "") +
-        "}";
+        "}" +
+        colorOverride +
+        widthOverride;
 
       this.shadowRoot.innerHTML =
         "<style>" +
@@ -239,9 +244,10 @@
         size +
         '" type="button"' +
         (disabled ? " disabled" : "") +
-        '><span class="tq-btn__overlay" aria-hidden="true"></span><span class="tq-btn__content">' +
-        escapeHtml(label) +
-        "</span></button>";
+        '><span class="tq-btn__overlay" aria-hidden="true"></span><span class="tq-btn__content"><slot></slot></span></button>';
+    }
+    connectedCallback() {
+      this._render();
     }
   }
 
