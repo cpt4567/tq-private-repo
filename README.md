@@ -122,7 +122,7 @@ cd tq-shadow-components
 
 ### GitHub Pages (배포)
 
-**https://thankqcamping.github.io/tq-layout-component/** 에서 라이브 데모를 확인할 수 있습니다.
+**https://cpt4567.github.io/tq-private-repo/** 에서 라이브 데모를 확인할 수 있습니다.
 
 배포 방법:
 1. GitHub 저장소 → **Settings** → **Pages**
@@ -141,6 +141,3 @@ npx serve .
 python -m http.server 8080
 ```
 
-## License
-
-MIT
