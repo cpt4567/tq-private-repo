@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shadow DOM - 디자인시스템 Button & Badge</title>
+    <link
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: Pretendard, system-ui, sans-serif;
+        padding: 24px;
+        background: #f7f7f8;
+      }
+      h1 {
+        font-size: 24px;
+        font-weight: 600;
+        color: #171719;
+        margin-bottom: 24px;
+      }
+      section {
+        margin-bottom: 32px;
+      }
+      h2 {
+        font-size: 15px;
+        font-weight: 600;
+        color: #37383c9c;
+        margin-bottom: 12px;
+      }
+      .demo-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+        margin-bottom: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Shadow DOM - 디자인시스템 Button & Badge</h1>
+
+    <section>
+      <h2>Top Navigation</h2>
+
+      <div style="width:100%; display: flex; flex-direction: column; gap: 12px;">
+        <tq-top-navigation id="top-nav-demo" is-login="true"></tq-top-navigation>
+        <tq-top-navigation id="top-nav-logout" is-login="false"></tq-top-navigation>
+      </div>
+      </section>
+    </section>
+
+    <section>
+      <h2>Button solid</h2>
+      <div class="demo-row">
+        <tq-button variant="solid" type="primary" size="small">Small</tq-button>
+        <tq-button variant="solid" type="primary" size="medium">Medium</tq-button>
+        <tq-button variant="solid" type="primary" size="large">Large</tq-button>
+      </div>
+      <div class="demo-row">
+        <tq-button variant="solid" type="assistive" size="small">Assistive Small</tq-button>
+        <tq-button variant="solid" type="assistive" size="medium">Assistive Medium</tq-button>
+        <tq-button variant="solid" type="assistive" size="large">Assistive Large</tq-button>
+      </div>
+      <div class="demo-row">
+        <tq-button variant="solid" type="primary" size="large" disabled>Disabled</tq-button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Button outlined</h2>
+      <div class="demo-row">
+        <tq-button variant="outlined" type="primary" size="small">Primary</tq-button>
+        <tq-button variant="outlined" type="secondary" size="medium">Secondary</tq-button>
+        <tq-button variant="outlined" type="assistive" size="large">Assistive</tq-button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Badge</h2>
+      <div class="demo-row">
+        <tq-badge variant="outline" color="primary" size="small">Primary</tq-badge>
+        <tq-badge variant="outline" color="semantic-status-cautionary" size="small">cautionary</tq-badge>
+      </div>
+    </section>
+
+    <section>
+      <h2>Category (Solid)</h2>
+      <tq-category-group
+        id="category-solid"
+        size="small"
+        group='[{"label":"전체","value":"all"},{"label":"캠핑","value":"camping"},{"label":"글램핑","value":"glamping"},{"label":"카라반","value":"caravan"}]'
+      ></tq-category-group>
+      <p id="category-solid-output" style="margin-top:12px;font-size:13px;color:#37383c9c;">선택: (없음)</p>
+    </section>
+
+    <section>
+      <h2>Category (Outline)</h2>
+      <tq-category-group
+        id="category-outline"
+        outline
+        size="small"
+        group='[{"label":"전체","value":"all"},{"label":"캠핑","value":"camping"},{"label":"글램핑","value":"glamping"}]'
+      ></tq-category-group>
+      <p id="category-outline-output" style="margin-top:12px;font-size:13px;color:#37383c9c;">선택: (없음)</p>
+    </section>
+
+    <section>
+      <h2>Camp Card</h2>
+      <div class="demo-row">
+        <tq-camp-card
+          image="https://vrthumb.clipartkorea.co.kr/2021/10/01/tc00440000271.jpg"
+          name="땡큐캠핑장"
+          price="10,000"
+          discount="10"
+          original-price="100,000원~"
+          tag="등록된 검색태그"
+        ></tq-camp-card>
+      </div>
+    </section>
+
+    <section>
+      <h2>Tab</h2>
+      <div style="width:100%;max-width:400px;">
+        <tq-tab
+          id="tab-demo"
+          size="medium"
+          resize="fill"
+          padding
+          items='[{"text":"전체","selected":true},{"text":"캠핑"},{"text":"글램핑"},{"text":"카라반"}]'
+        ></tq-tab>
+      </div>
+      <p id="tab-demo-output" style="margin-top:12px;font-size:13px;color:#37383c9c;">선택: 0 (전체)</p>
+    </section>
+
+    <section>
+      <h2>Banner Carousel</h2>
+      <div style="width:100%;max-width:1000px; display: flex; flex-direction: column; gap: 12px;">
+   
+      <tq-banner-carousel height="100" images='["https://m.thankqcamping.com/file/2026/02/19/2026021937697.52.png","https://m.thankqcamping.com/file/2026/02/19/2026021937277.14.png"]'
+      ></tq-banner-carousel>
+
+      <tq-banner-carousel height="150px" images='["https://m.thankqcamping.com/file/2026/02/19/2026021937697.52.png","https://m.thankqcamping.com/file/2026/02/19/2026021937277.14.png"]'></tq-banner-carousel>
+
+      <tq-banner-carousel height="20vh" images='["https://m.thankqcamping.com/file/2026/02/19/2026021937697.52.png","https://m.thankqcamping.com/file/2026/02/19/2026021937277.14.png"]'></tq-banner-carousel>
+      </div>
+    </section>
+
+    <section>
+      <h2>Bottom Navigation</h2>
+        <tq-bottom-navigation
+          id="bottom-nav-demo"
+          list='[{"label":"홈","icon":"home"},{"label":"내주변","icon":"nearme"},{"label":"혜택","icon":"gift"},{"label":"찜","icon":"heart"},{"label":"마이","icon":"avatar"}]'
+          active="홈"
+          active-class-name="fill-semantic-primary-normal text-semantic-primary-normal"
+        ></tq-bottom-navigation>
+      <p id="bottom-nav-demo-output" style="margin-top:12px;font-size:13px;color:#37383c9c;">선택: 홈</p>
+    </section>
+
+    <section>
+      <h2>Tooltip</h2>
+      <div class="demo-row">
+        <tq-tooltip content="메시지에 마침표를 찍어요." placement="top" variant="dark">
+          <div style="min-height:100px;min-width:150px;border:1px solid #ddd;border-radius:8px;padding:12px;text-align:center;">Hover me</div>
+        </tq-tooltip>
+        <tq-tooltip content="클릭하면 나타나요" placement="top" trigger="click">
+          <div style="min-width:150px;border:1px solid #ddd;border-radius:8px;padding:12px;text-align:center;">Click me</div>
+        </tq-tooltip>
+        <tq-tooltip content="라이트 테마" placement="bottom" variant="light">
+          <div style="min-width:150px;border:1px solid #ddd;border-radius:8px;padding:12px;text-align:center;">Light</div>
+        </tq-tooltip>
+        <tq-tooltip content="화살표 없음" placement="top" arrow="false">
+          <div style="min-width:150px;border:1px solid #ddd;border-radius:8px;padding:12px;text-align:center;">No arrow</div>
+        </tq-tooltip>
+      </div>
+    </section>
+
+    <section>
+      <h2>Accommodation Card</h2>
+      <div class="demo-row">
+        <tq-accommodation-card
+          image="https://t3.ftcdn.net/jpg/03/72/76/00/360_F_372760048_FWz5wOmOVNSFH5d2trg3GkLeuOQFyrq3.jpg"
+          caption="오버레이 캡션"
+          tags="쿠폰, 이벤트, 퇴실연장"
+          title="숙소명"
+          price="10,000"
+          discount="10"
+          original-price="100,000원~"
+        ></tq-accommodation-card>
+      </div>
+    </section>
+
+    <script src="./tokens.js"></script>
+    <script src="./tq-button.js"></script>
+    <script src="./tq-badge.js"></script>
+    <script src="./tq-category-group.js"></script>
+    <script src="./tq-camp-card.js"></script>
+    <script src="./tq-accommodation-card.js"></script>
+    <script src="./tq-tab.js"></script>
+    <script src="./tq-banner-carousel.js"></script>
+    <script src="./tq-tooltip.js"></script>
+    <script src="./tq-bottom-navigation.js"></script>
+    <script src="./tq-top-navigation.js"></script>
+
+    <script>
+      (function () {
+        function handleCategorySelection(e) {
+          var id = e.target.id;
+          var output = document.getElementById(id + "-output");
+          if (!output) return;
+          var keys = Array.from(e.detail.selectedKeys);
+          output.textContent = "선택: " + (keys.length ? keys.join(", ") : "(없음)");
+        }
+        var solid = document.getElementById("category-solid");
+        var outline = document.getElementById("category-outline");
+        if (solid) solid.addEventListener("selectionchange", handleCategorySelection);
+        if (outline) outline.addEventListener("selectionchange", handleCategorySelection);
+
+        var tabDemo = document.getElementById("tab-demo");
+        var tabOutput = document.getElementById("tab-demo-output");
+        var tabLabels = ["전체", "캠핑", "글램핑", "카라반"];
+        if (tabDemo && tabOutput) {
+          tabDemo.addEventListener("selectionchange", function (e) {
+            var idx = e.detail.selectedIndex;
+            tabOutput.textContent = "선택: " + idx + " (" + (tabLabels[idx] || "") + ")";
+          });
+        }
+
+        var bottomNav = document.getElementById("bottom-nav-demo");
+        var bottomNavOutput = document.getElementById("bottom-nav-demo-output");
+        if (bottomNav && bottomNavOutput) {
+          bottomNav.addEventListener("activechange", function (e) {
+            bottomNavOutput.textContent = "선택: " + e.detail.active;
+          });
+        }
+
+        ["top-nav-demo", "top-nav-logout"].forEach(function (id) {
+          var el = document.getElementById(id);
+          var output = document.getElementById("top-nav-output");
+          if (el && output) {
+            ["loginclick", "ticketclick", "bellclick", "menuclick"].forEach(function (ev) {
+              el.addEventListener(ev, function () {
+                output.textContent = "클릭: " + ev.replace("click", "");
+              });
+            });
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thank Q Camping - 외벽 레이아웃</title>
+    <link
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Pretendard, system-ui, sans-serif;
+        min-height: 100vh;
+        background: #e5e5e5;
+      }
+
+      /* 외벽: 전체 레이아웃 */
+      .outer-wall {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        min-height: 100vh;
+        background: #e5e5e5;
+      }
+
+      /* 외벽: 좌측 QR 사이드바 */
+      .outer-wall__sidebar {
+        grid-column: 1;
+        min-height: 100vh;
+        background: linear-gradient(180deg, #fff5f0 0%, #ffe8e0 100%);
+        padding: 24px 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .outer-wall__sidebar-qr {
+        max-width: 100%;
+        background: #fff;
+        border: 2px solid #ff4802;
+        border-radius: 8px;
+        padding: 12px;
+        margin-top: 40px;
+      }
+      .outer-wall__sidebar-qr img {
+        width: 72px;
+        height: 72px;
+        display: block;
+      }
+      .outer-wall__sidebar-qr-placeholder {
+        width: 72px;
+        height: 72px;
+        background: #f7f7f8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        color: #999;
+      }
+      .outer-wall__sidebar-text {
+        font-size: 11px;
+        color: #37383c;
+        text-align: center;
+        margin-top: 12px;
+        line-height: 1.4;
+      }
+      .outer-wall__sidebar-text--bottom {
+        margin-top: 8px;
+        font-size: 10px;
+        color: #70737c;
+      }
+
+      /* 외벽: 중앙 영역 (2번째 컬럼) */
+      .outer-wall__center {
+        grid-column: 2;
+        display: flex;
+        justify-content: center;
+        min-width: 0;
+      }
+
+      /* 외벽: 중앙 컨텐츠 (max-640px) */
+      .outer-wall__main {
+        width: 100%;
+        max-width: 640px;
+        background: #fff;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+
+      /* 헤더 */
+      .outer-wall__header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: #fff;
+        padding: 12px 16px;
+        border-bottom: 1px solid #f4f4f5;
+      }
+      .outer-wall__header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .outer-wall__logo {
+        font-size: 18px;
+        font-weight: 700;
+        color: #171719;
+      }
+      .outer-wall__logo span {
+        color: #ff4802;
+      }
+      .outer-wall__header-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .outer-wall__btn-login {
+        padding: 8px 16px;
+        border: 1px solid #ff4802;
+        border-radius: 8px;
+        background: #fff;
+        color: #ff4802;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .outer-wall__btn-menu {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 4px;
+        cursor: pointer;
+      }
+      .outer-wall__btn-menu span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: #171719;
+      }
+
+      /* 검색바 */
+      .outer-wall__search {
+        margin: 12px 16px;
+        padding: 12px 16px;
+        background: #f7f7f8;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .outer-wall__search-icon {
+        width: 20px;
+        height: 20px;
+        opacity: 0.5;
+      }
+      .outer-wall__search input {
+        flex: 1;
+        border: none;
+        background: transparent;
+        font-size: 14px;
+        color: #171719;
+      }
+      .outer-wall__search input::placeholder {
+        color: #989ba2;
+      }
+
+      /* 컨텐츠 영역 (섹션 제외) */
+      .outer-wall__content {
+        flex: 1;
+        padding: 16px;
+      }
+      .outer-wall__content-placeholder {
+        font-size: 14px;
+        color: #989ba2;
+        text-align: center;
+        padding: 40px 20px;
+      }
+
+      /* 하단 네비게이션 (중앙 콘텐츠와 동일 max-width) */
+      .outer-wall__bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 120px;
+        right: 0;
+        height: 56px;
+        background: #1b1c1e;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 20;
+      }
+      .outer-wall__bottom-nav-inner {
+        width: 100%;
+        max-width: 640px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+      }
+      .outer-wall__bottom-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        color: #989ba2;
+        font-size: 10px;
+        cursor: pointer;
+      }
+      .outer-wall__bottom-nav-item--active {
+        color: #fff;
+      }
+
+      /* 하단 네비 하단 여백 */
+      .outer-wall__content {
+        padding-bottom: 72px;
+      }
+
+      @media (max-width: 768px) {
+        .outer-wall {
+          grid-template-columns: 1fr;
+        }
+        .outer-wall__sidebar {
+          display: none;
+        }
+        .outer-wall__center {
+          grid-column: 1;
+        }
+        .outer-wall__bottom-nav {
+          left: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outer-wall">
+      <!-- 좌측 QR 사이드바 -->
+      <aside class="outer-wall__sidebar">
+        <div class="outer-wall__sidebar-text">
+          앱을 설치하면 더 많은 혜택을 받아 볼 수 있어요!
+        </div>
+        <div class="outer-wall__sidebar-qr">
+          <div class="outer-wall__sidebar-qr-placeholder">QR</div>
+        </div>
+        <div class="outer-wall__sidebar-text outer-wall__sidebar-text--bottom">
+          카메라로 QR코드를 스캔해보세요
+        </div>
+      </aside>
+
+      <!-- 중앙 영역 -->
+      <div class="outer-wall__center">
+      <main class="outer-wall__main">
+        <!-- 헤더 -->
+        <header class="outer-wall__header">
+          <div class="outer-wall__header-inner">
+            <div class="outer-wall__logo">
+              Thank <span>Q</span> Camping
+            </div>
+            <div class="outer-wall__header-actions">
+              <button class="outer-wall__btn-login">로그인</button>
+              <div class="outer-wall__btn-menu">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- 검색바 -->
+        <div class="outer-wall__search">
+          <svg class="outer-wall__search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" placeholder="Q 올 봄엔 어디로 캠핑을 떠날까요?" />
+        </div>
+
+        <!-- 컨텐츠 영역 (섹션 제외) -->
+        <div class="outer-wall__content">
+          <div class="outer-wall__content-placeholder">
+            컨텐츠 영역 (카테고리, 배너, 프로모션 등)
+          </div>
+        </div>
+      </main>
+      </div>
+    </div>
+
+    <!-- 하단 네비게이션 -->
+    <nav class="outer-wall__bottom-nav">
+      <div class="outer-wall__bottom-nav-inner">
+        <div class="outer-wall__bottom-nav-item">쇼핑</div>
+        <div class="outer-wall__bottom-nav-item">내주변</div>
+        <div class="outer-wall__bottom-nav-item outer-wall__bottom-nav-item--active">홈</div>
+        <div class="outer-wall__bottom-nav-item">찜</div>
+        <div class="outer-wall__bottom-nav-item">마이</div>
+      </div>
+    </nav>
+  </body>
+</html>
