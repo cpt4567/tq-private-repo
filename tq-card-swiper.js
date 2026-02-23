@@ -46,6 +46,7 @@
     constructor() {
       super();
       this._swiper = null;
+      this._resizeObserver = null;
     }
     connectedCallback() {
       var self = this;
@@ -59,6 +60,10 @@
       }, 0);
     }
     disconnectedCallback() {
+      if (this._resizeObserver && this._swiper) {
+        this._resizeObserver.disconnect();
+        this._resizeObserver = null;
+      }
       if (this._swiper) {
         this._swiper.destroy(true, true);
         this._swiper = null;
@@ -92,7 +97,7 @@
 
       var style = document.createElement("style");
       style.textContent =
-        "tq-card-swiper{display:block;width:100%;min-width:0}.tq-card-swiper .swiper{overflow:hidden;width:100%;padding:8px 0}.tq-card-swiper:not(.tq-card-swiper--grid) .swiper-wrapper{display:flex;transition-property:transform;will-change:transform;justify-content:flex-start!important}.tq-card-swiper:not(.tq-card-swiper--grid) .swiper-slide{flex-shrink:0;width:auto}.tq-card-swiper .swiper-slide{height:auto;box-sizing:border-box}";
+        "tq-card-swiper{display:block;width:100%;min-width:0}.tq-card-swiper .swiper{overflow:hidden;width:100%;padding:8px 0}.tq-card-swiper:not(.tq-card-swiper--grid) .swiper-wrapper{display:flex;transition-property:transform;will-change:transform;justify-content:flex-start!important}.tq-card-swiper:not(.tq-card-swiper--grid) .swiper-slide{flex-shrink:0;width:auto}.tq-card-swiper .swiper-slide{height:auto;box-sizing:border-box}.tq-card-swiper--grid .swiper-slide{height:auto}";
       this.insertBefore(style, container);
     }
     _initSwiper() {
@@ -101,7 +106,10 @@
 
       var spaceBetween = parseInt(this.getAttribute("space-between") || "12", 10);
       var gridRows = parseInt(this.getAttribute("grid-rows") || "0", 10);
-
+      
+      var slideWidth = parseInt(this.getAttribute("slide-width") || "152", 10);
+      var slideHeight = parseInt(this.getAttribute("slide-height") || "500", 10);
+      
       var opts = {
         spaceBetween: spaceBetween,
         centeredSlides: false,
@@ -109,16 +117,19 @@
         grabCursor: true,
         resistance: true,
         resistanceRatio: 0.85,
+        ...(slideWidth && { width: slideWidth }),
+        ...(slideHeight && { height: slideHeight }),
       };
 
       if (gridRows > 1) {
-        opts.grid = { rows: gridRows };
-        opts.slidesPerView = 2;
+        opts.grid = { rows: gridRows, fill: "row" };
       } else {
         opts.slidesPerView = "auto";
       }
 
       this._swiper = new window.Swiper(container, opts);
+
+    
     }
   }
 

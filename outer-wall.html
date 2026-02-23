@@ -429,7 +429,8 @@
     <script src="./tq-top-navigation.js"></script>
     <script src="./tq-thumbnail.js"></script>
     <script src="./tq-card-swiper.js"></script>
-
+    <script src="./tq-camp-list-card.js"></script>
+    
     <div class="outer-wall">
       <!-- 좌측 QR 사이드바 -->
       <aside>
@@ -973,16 +974,9 @@
           </svg>
           </div>
         </div>
-        
+      
         <div style="margin: 8px 0;">
-           <tq-category-group
-           id="category-region"
-           size="medium"
-           group='[{"label":"오토캠핑","value":"autocamping"},{"label":"글램핑","value":"glamping"},{"label":"카라반","value":"caravan"},{"label":"펜션","value":"pension"},{"label":"캠프닉","value":"campnic"}]'
-         ></tq-category-group>
-        </div>
-
-        <tq-card-swiper grid-rows="2">
+        <tq-card-swiper grid-rows="2" slide-width="152" slide-height="500">
           <tq-thumbnail
             title="캠프닉 숙소 추천"
             description="가볍게 당일 캠핑&바베큐 어때요?"
@@ -994,20 +988,147 @@
             image="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=304&h=228&fit=crop"
           ></tq-thumbnail>
           <tq-thumbnail
-            title="캠프닉 숙소 추천"
-            description="가볍게 당일 캠핑&바베큐 어때요?"
-            image="https://images.unsplash.com/photo-1523987355523-c7b5b0fd90fd?w=304&h=228&fit=crop"
-          ></tq-thumbnail>
+          title="캠프닉 숙소 추천"
+          description="가볍게 당일 캠핑&바베큐 어때요?"
+          image="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=304&h=228&fit=crop"
+        ></tq-thumbnail>
+        <tq-thumbnail
+          title="캠프닉 숙소 추천"
+          description="가볍게 당일 캠핑&바베큐 어때요?"
+          image="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=304&h=228&fit=crop"
+        ></tq-thumbnail>
           <tq-thumbnail
-            title="캠프닉 숙소 추천"
-            description="가볍게 당일 캠핑&바베큐 어때요?"
-            image="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=304&h=228&fit=crop"
-          ></tq-thumbnail>  
+          title="캠프닉 숙소 추천"
+          description="가볍게 당일 캠핑&바베큐 어때요?"
+          image="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=304&h=228&fit=crop"
+        ></tq-thumbnail>
         </tq-card-swiper>
-
         </div>
+      </section>
+      <!--  -->
+      <div style="margin: 20px 0;">
+        <tq-banner-carousel height="75" images='["https://m.thankqcamping.com/file/2026/02/19/2026021937697.52.png","https://m.thankqcamping.com/file/2026/02/19/2026021937277.14.png"]'
+        ></tq-banner-carousel>
+      </div>
+      <!--  -->
+      <section class="rec-section">
+        <div
+          class="rec-section__header rec-section__header--col rec-section__header--interactive"
+          role="button"
+          tabindex="0"
+          data-href="#"
+          style="cursor: pointer; "
+        >
+          <h2 class="rec-section__title--md">이 지역의 인기 숙소 추천</h2>
+
+          <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+            <p class="rec-section__subtitle">최근 3개월간 예약 많은 순</p>
+           
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 20.125C9.84512 20.125 7.77849 19.269 6.25476 17.7452C4.73102 16.2215 3.875 14.1549 3.875 12C3.875 9.84511 4.73103 7.77849 6.25476 6.25476C7.77849 4.73102 9.84512 3.875 12 3.875C14.1549 3.875 16.2215 4.73102 17.7452 6.25476C19.269 7.77849 20.125 9.84512 20.125 12C20.125 14.1549 19.269 16.2215 17.7452 17.7452C16.2215 19.269 14.1549 20.125 12 20.125ZM12 2C9.34784 2 6.8043 3.05357 4.92893 4.92893C3.05357 6.80429 2 9.34783 2 12C2 14.6522 3.05357 17.1957 4.92893 19.0711C6.8043 20.9464 9.34783 22 12 22C14.6522 22 17.1957 20.9464 19.0711 19.0711C20.9464 17.1957 22 14.6522 22 12C22 9.34783 20.9464 6.8043 19.0711 4.92893C17.1957 3.05357 14.6522 2 12 2ZM12 17C12.5195 17 12.9375 16.582 12.9375 16.0625L12.9375 11.6875C12.9375 11.168 12.5195 10.75 12 10.75C11.4805 10.75 11.0625 11.168 11.0625 11.6875L11.0625 16.0625C11.0625 16.582 11.4805 17 12 17ZM10.75 8.25C10.75 8.58152 10.8817 8.89946 11.1161 9.13388C11.3505 9.3683 11.6685 9.5 12 9.5C12.3315 9.5 12.6495 9.3683 12.8839 9.13388C13.1183 8.89946 13.25 8.58152 13.25 8.25C13.25 7.91848 13.1183 7.60054 12.8839 7.36612C12.6495 7.1317 12.3315 7 12 7C11.6685 7 11.3505 7.1317 11.1161 7.36612C10.8817 7.60054 10.75 7.91848 10.75 8.25Z" fill="#37383C" fill-opacity="0.61"/>
+            </svg>
+              
+          </div>
+        </div>
+        <div style="margin: 8px 0;">
+        <tq-category-group
+        id="category-region"
+        size="medium"
+        group='[{"label":"오토캠핑","value":"autocamping"},{"label":"글램핑","value":"glamping"},{"label":"카라반","value":"caravan"},{"label":"펜션","value":"pension"},{"label":"캠프닉","value":"campnic"}]'
+      ></tq-category-group>
+      </div>
+
+      <tq-camp-list-card
+      order="1"
+      name="캠프닉 숙소"
+      address="강원도 홍천군"
+      count="10,000"  
+      discount="15"
+      price="85,000원~"
+      image="https://t3.ftcdn.net/jpg/03/72/76/00/360_F_372760048_FWz5wOmOVNSFH5d2trg3GkLeuOQFyrq3.jpg"
+      ></tq-camp-list-card>
+      <tq-camp-list-card
+      order="2"
+      name="캠프닉 숙소"
+      address="강원도 홍천군"
+      count="10,000"  
+      discount="15"
+      price="85,000원~"
+      image="https://t3.ftcdn.net/jpg/03/72/76/00/360_F_372760048_FWz5wOmOVNSFH5d2trg3GkLeuOQFyrq3.jpg"
+      ></tq-camp-list-card>
+
+      <div class="rec-section__more">
+        <tq-button variant="outlined" type="assistive" size="medium" text-color="#000" full-width>숙소 추천 전체보기</tq-button>
+      </div>
 
       </section>
+      <!--  -->
+      <section class="rec-section">
+        <div
+          class="rec-section__header rec-section__header--col rec-section__header--interactive"
+          role="button"
+          tabindex="0"
+          data-href="#"
+          style="cursor: pointer; "
+        >
+          <h2 class="rec-section__title--md">자연을 만끽하기엔 2박 이상은 필수</h2>
+
+          <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+            <p class="rec-section__subtitle">연박 할인 숙소 추천</p>
+          
+          <svg class="rec-section__header-arrow" width="12" height="24" viewBox="0 0 12 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.78354 11.3301C10.1507 11.6973 10.1507 12.291 9.78354 12.6543L3.53353 18.9082C3.16634 19.2754 2.57259 19.2754 2.20931 18.9082C1.84602 18.541 1.84212 17.9473 2.20931 17.584L7.79525 11.998L2.2054 6.40821C1.83821 6.04102 1.83821 5.44727 2.2054 5.08399C2.57259 4.72071 3.16634 4.7168 3.52962 5.08399L9.78354 11.3301Z" fill="currentColor" fill-opacity="0.61"/>
+          </svg>
+          </div>
+        </div>
+        
+        <div style="margin: 8px 0;">
+           <tq-category-group
+           id="category-region"
+           size="medium"
+           group='[{"label":"오토캠핑","value":"autocamping"},{"label":"글램핑","value":"glamping"},{"label":"카라반","value":"caravan"},{"label":"펜션","value":"pension"},{"label":"캠프닉","value":"campnic"}]'
+         ></tq-category-group>
+        </div>
+
+        <tq-card-swiper>
+          
+          <tq-accommodation-card
+            tags="쿠폰, 이벤트, 퇴실연장"
+            title="{숙소명}"
+            price="10,000"
+            discount="10"
+            original-price="100,000원~"
+            image="https://t3.ftcdn.net/jpg/03/72/76/00/360_F_372760048_FWz5wOmOVNSFH5d2trg3GkLeuOQFyrq3.jpg"
+            caption="오버레이 캡션"
+          ></tq-accommodation-card>
+
+          <tq-accommodation-card
+            tags="쿠폰, 이벤트, 퇴실연장"
+            title="{숙소명}"
+            price="10,000"
+            discount="10"
+            original-price="100,000원~"
+            image="https://t3.ftcdn.net/jpg/03/72/76/00/360_F_372760048_FWz5wOmOVNSFH5d2trg3GkLeuOQFyrq3.jpg"
+            caption="오버레이 캡션"
+          ></tq-accommodation-card>
+
+          <tq-accommodation-card
+            tags="쿠폰, 이벤트, 퇴실연장"
+            title="{숙소명}"
+            price="10,000"
+            discount="10"
+            original-price="100,000원~"
+            image="https://t3.ftcdn.net/jpg/03/72/76/00/360_F_372760048_FWz5wOmOVNSFH5d2trg3GkLeuOQFyrq3.jpg"
+            caption="오버레이 캡션"
+          ></tq-accommodation-card>
+        </tq-card-swiper>
+      </section>
+      <!--  -->
+      <div style="margin: 20px 0;">
+        <tq-banner-carousel height="75" images='["https://m.thankqcamping.com/file/2026/02/19/2026021937697.52.png","https://m.thankqcamping.com/file/2026/02/19/2026021937277.14.png"]'
+        ></tq-banner-carousel>
+      </div>
+      <!--  -->
       </main>
       </div>
     </div>
