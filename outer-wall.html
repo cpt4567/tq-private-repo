@@ -242,7 +242,7 @@
       }
       .rec-section__header {
         display: flex;
-        align-items: flex-start;
+        align-items: flex-end;
         justify-content: space-between;
         gap: 12px;
       }
@@ -258,6 +258,7 @@
         letter-spacing: -1.94%;
         color: #171719;
         flex: 1;
+        padding-bottom: 8px;
       }
       .rec-section__title-meta {
         display: flex;
@@ -397,6 +398,7 @@
         line-height: 145%;
         letter-spacing: -0.0002em;
         color: #171719;
+        align-self: flex-start;
       }
 
       @media (max-width: 640px) {
@@ -429,7 +431,9 @@
     <script src="./tq-top-navigation.js"></script>
     <script src="./tq-thumbnail.js"></script>
     <script src="./tq-card-swiper.js"></script>
+    <script src="./tq-card-grid.js"></script>
     <script src="./tq-camp-list-card.js"></script>
+    <script src="./tq-tooltip.js"></script>
     
     <div class="outer-wall">
       <!-- 좌측 QR 사이드바 -->
@@ -449,7 +453,20 @@
       <section class="rec-section">
         
         <div class="rec-section__header">
-          <h2 class="rec-section__title"><span style="color: #FF4802">{닉네임}</span>님이<br>좋아하실 만한 숙소 추천</h2>
+          <h2 class="rec-section__title">
+            <span style="color: #FF4802">{닉네임}</span>님이<br>좋아하실 만한 숙소 추천
+          </h2>
+
+          <div style="margin-bottom: 8px;">
+
+            <tq-tooltip content="이전 예약 내역, 찜한 숙소, 최근본숙소 등 회원님의 이용 패턴을 기반으로 좋아하실 만한 비슷한 유형의 숙소를 추천합니다." placement="bottom" variant="dark">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 20.125C9.84512 20.125 7.77849 19.269 6.25476 17.7452C4.73102 16.2215 3.875 14.1549 3.875 12C3.875 9.84511 4.73103 7.77849 6.25476 6.25476C7.77849 4.73102 9.84512 3.875 12 3.875C14.1549 3.875 16.2215 4.73102 17.7452 6.25476C19.269 7.77849 20.125 9.84512 20.125 12C20.125 14.1549 19.269 16.2215 17.7452 17.7452C16.2215 19.269 14.1549 20.125 12 20.125ZM12 2C9.34784 2 6.8043 3.05357 4.92893 4.92893C3.05357 6.80429 2 9.34783 2 12C2 14.6522 3.05357 17.1957 4.92893 19.0711C6.8043 20.9464 9.34783 22 12 22C14.6522 22 17.1957 20.9464 19.0711 19.0711C20.9464 17.1957 22 14.6522 22 12C22 9.34783 20.9464 6.8043 19.0711 4.92893C17.1957 3.05357 14.6522 2 12 2ZM12 17C12.5195 17 12.9375 16.582 12.9375 16.0625L12.9375 11.6875C12.9375 11.168 12.5195 10.75 12 10.75C11.4805 10.75 11.0625 11.168 11.0625 11.6875L11.0625 16.0625C11.0625 16.582 11.4805 17 12 17ZM10.75 8.25C10.75 8.58152 10.8817 8.89946 11.1161 9.13388C11.3505 9.3683 11.6685 9.5 12 9.5C12.3315 9.5 12.6495 9.3683 12.8839 9.13388C13.1183 8.89946 13.25 8.58152 13.25 8.25C13.25 7.91848 13.1183 7.60054 12.8839 7.36612C12.6495 7.1317 12.3315 7 12 7C11.6685 7 11.3505 7.1317 11.1161 7.36612C10.8817 7.60054 10.75 7.91848 10.75 8.25Z" fill="#37383C" fill-opacity="0.61"/>
+              </svg>
+            </tq-tooltip>
+    
+          </div>
+
         </div>
 
 
@@ -555,6 +572,7 @@
             caption="오버레이 캡션"
           ></tq-accommodation-card>
 
+          
           <tq-accommodation-card
             tags="쿠폰, 이벤트, 퇴실연장"
             title="{숙소명}"
@@ -976,7 +994,7 @@
         </div>
       
         <div style="margin: 8px 0;">
-        <tq-card-swiper grid-rows="2" slide-width="152" slide-height="500">
+        <tq-card-grid rows="2" space-between="12">
           <tq-thumbnail
             title="캠프닉 숙소 추천"
             description="가볍게 당일 캠핑&바베큐 어때요?"
@@ -1002,7 +1020,22 @@
           description="가볍게 당일 캠핑&바베큐 어때요?"
           image="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=304&h=228&fit=crop"
         ></tq-thumbnail>
-        </tq-card-swiper>
+        <tq-thumbnail
+        title="캠프닉 숙소 추천"
+        description="가볍게 당일 캠핑&바베큐 어때요?"
+        image="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=304&h=228&fit=crop"
+      ></tq-thumbnail>
+      <tq-thumbnail
+      title="캠프닉 숙소 추천"
+      description="가볍게 당일 캠핑&바베큐 어때요?"
+      image="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=304&h=228&fit=crop"
+    ></tq-thumbnail>
+    <tq-thumbnail
+    title="캠프닉 숙소 추천"
+    description="가볍게 당일 캠핑&바베큐 어때요?"
+    image="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=304&h=228&fit=crop"
+  ></tq-thumbnail>
+        </tq-card-grid>
         </div>
       </section>
       <!--  -->

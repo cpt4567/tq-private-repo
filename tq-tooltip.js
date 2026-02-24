@@ -27,11 +27,22 @@
     leftBottom: "left-end",
   };
 
+  var TQ_TOOLTIP_STYLES =
+    ".tippy-box[data-theme~='dark']{background:#1B1C1E}.tippy-box[data-theme~='dark'] .tippy-content{padding:10px}.tippy-box[data-theme~='dark'][data-placement^='top']>.tippy-arrow::before{border-top-color:#1B1C1E}.tippy-box[data-theme~='dark'][data-placement^='bottom']>.tippy-arrow::before{border-bottom-color:#1B1C1E}.tippy-box[data-theme~='dark'][data-placement^='left']>.tippy-arrow::before{border-left-color:#1B1C1E}.tippy-box[data-theme~='dark'][data-placement^='right']>.tippy-arrow::before{border-right-color:#1B1C1E}.tippy-box[data-theme~='light'] .tippy-content{padding:10px}";
+
   function loadCss(href) {
     var link = document.createElement("link");
     link.rel = "stylesheet";
     link.href = href;
     document.head.appendChild(link);
+  }
+
+  function injectTqTooltipStyles() {
+    if (document.getElementById("tq-tooltip-styles")) return;
+    var style = document.createElement("style");
+    style.id = "tq-tooltip-styles";
+    style.textContent = TQ_TOOLTIP_STYLES;
+    document.head.appendChild(style);
   }
 
   function loadScript(src, callback) {
@@ -48,11 +59,13 @@
     if (window.tippy) {
       loadCss(TIPPY_CSS);
       loadCss(TIPPY_ANIM);
+      injectTqTooltipStyles();
       callback(window.tippy);
       return;
     }
     loadCss(TIPPY_CSS);
     loadCss(TIPPY_ANIM);
+    injectTqTooltipStyles();
     if (window.Popper) {
       loadScript(TIPPY_JS, function () {
         callback(window.tippy);

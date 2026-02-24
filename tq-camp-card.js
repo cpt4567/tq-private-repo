@@ -95,7 +95,7 @@
       html += "</div>";
 
       var styles =
-        ".tq-camp-card{display:block;width:240px;height:180px;border-radius:" +
+        ":host{display:inline-block;width:240px;height:180px;box-sizing:border-box}.tq-camp-card{display:block;width:240px;height:180px;border-radius:" +
         r[12] +
         ";position:relative;overflow:hidden;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease;box-shadow:" +
         shadowStyle +

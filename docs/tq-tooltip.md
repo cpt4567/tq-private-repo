@@ -54,6 +54,13 @@
 </tq-tooltip>
 ```
 
+## 스펙
+
+| 항목 | 값 |
+|------|-----|
+| padding | 10px |
+| background (dark) | #1B1C1E |
+
 ## 의존성
 
 - `tokens.js` (선택, 없어도 동작)

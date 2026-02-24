@@ -131,7 +131,7 @@
 
       var lineColor = c["semantic-line-normal-gray"] || "#70737c29";
       var styles =
-        ".tq-acc-card{display:block;width:152px;font-family:Pretendard,system-ui,sans-serif}.tq-acc-card__img-wrap{width:152px;height:114px;overflow:hidden;background:" +
+        ":host{display:inline-block;width:152px;box-sizing:border-box}.tq-acc-card{display:block;width:152px;font-family:Pretendard,system-ui,sans-serif}.tq-acc-card__img-wrap{width:152px;height:114px;overflow:hidden;background:" +
         placeholderBg +
         ";border-radius:" +
         r[8] +

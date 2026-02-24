@@ -35,6 +35,7 @@
 | Top Navigation     | `tq-top-navigation`     | 상단 네비게이션                                        | [📄](docs/tq-top-navigation.md)     |
 | Thumbnail          | `tq-thumbnail`          | 썸네일 (152×114, padding 8px)                         | [📄](docs/tq-thumbnail.md)         |
 | Card Swiper        | `tq-card-swiper`       | 카드/썸네일 가로 스크롤 (Swiper)                       | [📄](docs/tq-card-swiper.md)      |
+| Card Grid          | `tq-card-grid`         | 그리드 스와이퍼 (2행 + 가로 스와이프)                  | [📄](docs/tq-card-grid.md)        |
 
 ## Installation
 
