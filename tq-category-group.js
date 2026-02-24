@@ -303,7 +303,7 @@
         )
         .join("");
       var styles =
-        ".tq-category-group{display:flex;flex-wrap:wrap;gap:" +
+        ".tq-category-group{display:flex;flex-wrap:wrap; gap:" +
         s[8] +
         "}.tq-category{position:relative;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;outline:none;font-family:Pretendard,system-ui,sans-serif;box-sizing:border-box;text-align:center;padding:" +
         spec.py +
@@ -325,8 +325,7 @@
         i.normal.pressed +
         "}.tq-category:focus-visible .tq-category__overlay{opacity:" +
         o[8] +
-        "}.tq-category__content{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:" +
-        s[8] +
+        "}.tq-category__content{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;" +
         "}.tq-category__label{font-size:" +
         labelTypo.fontSize +
         ";font-weight:" +

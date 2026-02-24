@@ -94,7 +94,6 @@
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        position: relative;
       }
 
       /* 헤더 */
@@ -198,9 +197,9 @@
         box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
       }
 
-      /* 메인 콘텐츠 하단 여백 (fixed nav 높이) */
+      /* 메인 콘텐츠 하단 여백 (footer의 padding-bottom으로 처리) */
       .outer-wall__main {
-        padding-bottom: 72px;
+        padding-bottom: 0;
       }
 
       /* 헤더: sticky로 스크롤 시 상단 고정 */
@@ -222,6 +221,7 @@
         min-width: 0;
         padding: 20px 20px;
         overflow-x: hidden;
+        margin-bottom: 20px;
       }
       .rec-section__header {
         display: flex;
@@ -356,7 +356,7 @@
       }
       .rec-section__header--interactive {
         cursor: pointer;
-        padding: 12px 20px;
+        padding: 12px 6px;
         border-radius: 12px;
         transition: background-color 0.2s ease;
       }
@@ -412,6 +412,7 @@
     max-width: 640px;
     margin: 0 auto;
     background: var(--color-fill-alt);
+    padding-bottom: 72px;
   }
   .footer-main {
     display: flex;
@@ -532,7 +533,7 @@
     <script src="./tq-card-grid.js"></script>
     <script src="./tq-camp-list-card.js"></script>
     <script src="./tq-tooltip.js"></script>
-    
+    <script src="./tq-bottom-sheet.js"></script>
     <div class="outer-wall">
 
       <!-- 중앙 영역 --> 
@@ -544,7 +545,7 @@
         </div>
 
       <!-- 숙소 추천 섹션 -->
-      <section class="rec-section">
+      <section class="rec-section" style="padding-bottom: 0;">
         
         <div class="rec-section__header">
           <h2 class="rec-section__title">
@@ -615,14 +616,27 @@
         </div>
         
         <hr class="rec-section__divider"/>
-
-        <tq-category-group
+        <tq-bottom-sheet show-close heading="관심지역선택" style="--tq-bottom-sheet-center-offset: 60px">
+          <button slot="trigger" type="button" style="width:100%;text-align:left;background:transparent;border:none;cursor:pointer;padding:0;">
+            <tq-category-group
+              id="category-solid"
+              size="medium"
+              outline
+              arrow
+              group='[{"label":"관심지역선택","value":"all"}]'
+            ></tq-category-group>
+          </button>
+          <div slot="content">
+            <p style="padding:8px 0;color:#37383c9c;font-size:14px;">관심지역을 선택해주세요.</p>
+          </div>
+        </tq-bottom-sheet>
+      <!--   <tq-category-group
         id="category-solid"
         size="medium"
         outline
         arrow
         group='[{"label":"관심지역선택","value":"all"}]'
-      ></tq-category-group>
+      ></tq-category-group> -->
       </section>
       <!--  -->
       <section class="rec-section">
@@ -1291,11 +1305,11 @@
   
           <!-- 메뉴 -->
           <div class="footer-menu">
-            <a href="#">회사소개</a>
-            <a href="#">입점문의</a>
-            <a href="#">광고/마케팅</a>
-            <a href="#">개인정보처리방침</a>
-            <a href="#">이용약관</a>
+            <a href="http://about.thankqcamping.com/" target="_blank" rel="noopener noreferrer">회사소개</a>
+            <a href="http://about.thankqcamping.com/contactus_store.html" target="_blank" rel="noopener noreferrer">입점문의</a>
+            <a href="http://about.thankqcamping.com/contactus_ad.html" target="_blank" rel="noopener noreferrer">광고/마케팅</a>
+            <a href="https://m.thankqcamping.com/join/policy.hbb?policy_gb=CK001" target="_blank" rel="noopener noreferrer">개인정보처리방침</a>
+            <a href="https://m.thankqcamping.com/join/policy.hbb?policy_gb=CK000" target="_blank" rel="noopener noreferrer">이용약관</a>
           </div>
   
           <!-- 회사 정보 -->
@@ -1315,7 +1329,7 @@
             <div class="footer-cs-detail">대표번호: 02-6959-5622</div>
             <div class="footer-cs-detail">운영시간: 평일 9:30 - 18:00 (점심시간 12:30 - 13:30)</div>
             <div class="footer-cs-detail">thankqcamping@habbcom.com</div>
-            <a href="tel:02-6959-5622" class="footer-btn-call">전화하기</a>
+            <tq-button onclick="location.href='tel:02-6959-5622'" variant="outlined" type="assistive" size="small" text-color="#000" >전화하기</tq-button>
           </div>
         </div>
   
@@ -1326,13 +1340,13 @@
             <p class="footer-copyright">All rights reserved.</p>
           </div>
           <div class="footer-social">
-            <a href="#" aria-label="Instagram">
+            <a href="https://www.instagram.com/thankqcamping/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.3 6.848c0 .644-.514 1.159-1.158 1.159-.645 0-1.16-.515-1.16-1.16 0-.643.515-1.159 1.16-1.159s1.159.516 1.159 1.16M21.65 12c0 2.62-.01 2.952-.054 3.983-.043 1.03-.214 1.728-.45 2.34a4.75 4.75 0 0 1-1.117 1.706 4.74 4.74 0 0 1-1.707 1.117c-.611.236-1.32.397-2.34.45-1.03.043-1.363.054-3.982.054s-2.952-.01-3.982-.054c-1.03-.043-1.729-.214-2.34-.45a4.75 4.75 0 0 1-1.707-1.117 4.75 4.75 0 0 1-1.117-1.706c-.236-.612-.397-1.32-.45-2.34C2.36 14.952 2.35 14.619 2.35 12s.01-2.952.054-3.982c.043-1.03.214-1.728.45-2.34.247-.634.58-1.17 1.117-1.707a4.74 4.74 0 0 1 1.707-1.116c.611-.237 1.32-.398 2.34-.451C9.048 2.36 9.38 2.35 12 2.35s2.952.01 3.982.054c1.03.043 1.729.214 2.34.45.634.247 1.17.58 1.707 1.117s.87 1.073 1.116 1.707c.237.612.398 1.32.451 2.34.043 1.03.054 1.363.054 3.982m-1.739 0c0-2.576 0-2.887-.054-3.907-.043-.945-.204-1.45-.332-1.793a2.95 2.95 0 0 0-.72-1.105 2.95 2.95 0 0 0-1.105-.72c-.344-.128-.848-.29-1.793-.332-1.02-.043-1.32-.054-3.907-.054s-2.888 0-3.907.054c-.945.043-1.45.204-1.793.332-.45.172-.773.387-1.105.72a2.95 2.95 0 0 0-.72 1.105c-.128.344-.29.848-.332 1.793-.043 1.02-.054 1.32-.054 3.907s0 2.888.054 3.907c.043.945.204 1.45.332 1.793.172.45.387.773.72 1.106.332.332.654.547 1.105.719.344.129.848.29 1.793.333 1.02.042 1.32.053 3.907.053s2.887 0 3.907-.053c.945-.043 1.45-.204 1.793-.333.45-.172.773-.387 1.105-.72.333-.332.548-.654.72-1.105.128-.343.29-.848.332-1.793.043-1.02.054-1.32.054-3.907m-2.963 0a4.96 4.96 0 0 1-4.959 4.96A4.96 4.96 0 0 1 7.03 12a4.96 4.96 0 0 1 4.96-4.96A4.96 4.96 0 0 1 16.947 12m-1.739 0a3.216 3.216 0 0 0-3.22-3.22A3.216 3.216 0 0 0 8.77 12a3.216 3.216 0 0 0 3.22 3.22A3.216 3.216 0 0 0 15.21 12"/></svg>
             </a>
-            <a href="#" aria-label="Youtube">
+            <a href="https://www.youtube.com/channel/UC1mpUbxG_evWWhDEh6aJ4Ag" target="_blank" rel="noopener noreferrer" aria-label="Youtube">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M20.318 4.992c.915.245 1.64.97 1.885 1.885C22.65 8.54 22.65 12 22.65 12s0 3.461-.447 5.123a2.68 2.68 0 0 1-1.886 1.885c-1.66.447-8.317.447-8.317.447s-6.656 0-8.318-.447a2.67 2.67 0 0 1-1.885-1.885C1.35 15.46 1.35 12 1.35 12s0-3.461.447-5.123c.245-.916.97-1.64 1.885-1.885C5.344 4.545 12 4.545 12 4.545s6.656 0 8.317.447M9.87 8.805v6.39L15.408 12z" clip-rule="evenodd"/></svg>
             </a>
-            <a href="#" aria-label="Naver Blog">
+            <a href="https://blog.naver.com/camperstory" target="_blank" rel="noopener noreferrer" aria-label="Naver Blog">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M5.506 4.08h12.988A3.405 3.405 0 0 1 21.9 7.486v8.058a3.405 3.405 0 0 1-3.406 3.406h-4.623l-1.564 2.703a.372.372 0 0 1-.644 0L10.1 18.95H5.506A3.405 3.405 0 0 1 2.1 15.544V7.486A3.405 3.405 0 0 1 5.506 4.08m1.197 9.682c-.376 0-.722-.158-1-.425v.326H4.586v-4.93h1.119v1.564c.277-.267.613-.425 1-.425 1.029 0 1.87.87 1.87 1.95 0 1.079-.841 1.94-1.87 1.94m3.683-.099H9.258v-3.237c0-.545-.297-.802-.604-.812v-1c.752.05 1.732.545 1.732 1.802zm2.584.1c-1.079 0-1.95-.872-1.95-1.951s.871-1.95 1.95-1.95c1.08 0 1.95.87 1.95 1.95s-.87 1.95-1.95 1.95m6.435-.377c0 1.505-1.148 1.832-1.94 1.861v-.99c.712-.04.87-.386.861-1.01v-.069a1.45 1.45 0 0 1-1.03.446 1.876 1.876 0 0 1-1.87-1.871c0-1.03.84-1.872 1.87-1.872.396 0 .753.169 1.03.446V9.99h1.08zm-1.02-1.643c0 .505-.425.92-.95.92s-.95-.415-.95-.92.425-.921.95-.921.95.416.95.92m-10.85.079a.961.961 0 1 1-1.922-.002.961.961 0 0 1 1.922.002m6.356 0c0 .505-.416.92-.92.92a.925.925 0 0 1-.922-.92c0-.505.416-.92.921-.92s.92.415.92.92" clip-rule="evenodd"/></svg>
             </a>
           </div>

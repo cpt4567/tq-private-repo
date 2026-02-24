@@ -128,14 +128,14 @@
         ".tq-bottom-sheet{display:contents}" +
         ".tq-bottom-sheet__overlay{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,0.5);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease;touch-action:none}" +
         ".tq-bottom-sheet__overlay[data-open]{opacity:1;visibility:visible}" +
-        ".tq-bottom-sheet__panel{position:fixed;bottom:0;left:0;right:0;margin:0 auto;max-width:640px;transform:translateY(100%);background:" +
+        ".tq-bottom-sheet__panel{position:fixed;bottom:0;left:calc(50% + var(--tq-bottom-sheet-center-offset,0px));width:100%;max-width:640px;transform:translate(-50%,100%);background:" +
         white +
         ";border-radius:" +
         (r[20] || "20px") +
         " " +
         (r[20] || "20px") +
-        " 0 0;overflow:hidden;box-shadow:0 -4px 20px rgba(0,0,0,0.15);z-index:61;display:flex;flex-direction:column;transition:transform .3s cubic-bezier(0.32,0.72,0,1)}" +
-        ".tq-bottom-sheet__panel[data-open]{transform:translateY(0)}" +
+        " 0 0;overflow:hidden;z-index:61;display:flex;flex-direction:column;transition:transform .3s cubic-bezier(0.32,0.72,0,1)}" +
+        ".tq-bottom-sheet__panel[data-open]{transform:translate(-50%,0)}" +
         ".tq-bottom-sheet__nav{display:flex;align-items:center;justify-content:space-between;border-bottom:0.5px solid " +
         lineGray +
         ";border-radius:" +
@@ -195,10 +195,12 @@
       if (this._open) {
         this._overlay.setAttribute("data-open", "");
         this._panel.setAttribute("data-open", "");
+        document.documentElement.style.overflow = "hidden";
         document.body.style.overflow = "hidden";
       } else {
         this._overlay.removeAttribute("data-open");
         this._panel.removeAttribute("data-open");
+        document.documentElement.style.overflow = "";
         document.body.style.overflow = "";
       }
     }
@@ -264,6 +266,7 @@
       if (closeBtn) {
         closeBtn.removeEventListener("click", this._boundCloseClick);
       }
+      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
     }
     _handleBackdropClick(e) {
