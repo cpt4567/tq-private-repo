@@ -56,19 +56,14 @@
     "tq-card-grid{display:block;width:100%;min-width:0;overflow:hidden}.tq-card-grid .swiper{overflow:hidden;width:100%;padding:8px 0}.tq-card-grid .swiper-wrapper{display:flex;flex-wrap:wrap;flex-direction:row;transition-property:transform;will-change:transform}.tq-card-grid .swiper-slide{flex:0 0 auto;width:152px;height:114px;box-sizing:border-box}";
   document.head.appendChild(style);
 
-  function whenReady(element, fn) {
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        fn(element);
-      });
-    });
-  }
+  var MAX_INIT_RETRIES = 20;
+  var INIT_RETRY_DELAY = 50;
 
   function runBuild(element) {
     element._build();
     if (element.querySelector(".swiper")) {
       loadSwiper(function () {
-        whenReady(element, element._initSwiper.bind(element));
+        element._initSwiperWithRetry(0);
       });
     }
   }
@@ -80,20 +75,44 @@
     constructor() {
       super();
       this._swiper = null;
+      this._resizeObserver = null;
+      this._swiperInitializing = false;
     }
     connectedCallback() {
       var self = this;
-      queueMicrotask(function () {
-        if (self.children.length > 0) {
-          runBuild(self);
-        } else {
-          setTimeout(function () {
-            runBuild(self);
-          }, 0);
-        }
-      });
+      function doBuild() {
+        runBuild(self);
+      }
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", doBuild);
+      } else {
+        requestAnimationFrame(function () {
+          if (self.children.length > 0) {
+            doBuild();
+          } else {
+            var mo = new MutationObserver(function () {
+              if (self.children.length > 0) {
+                mo.disconnect();
+                doBuild();
+              }
+            });
+            mo.observe(self, { childList: true });
+            setTimeout(function () {
+              if (!self.querySelector(".swiper")) {
+                mo.disconnect();
+                doBuild();
+              }
+            }, 100);
+          }
+        });
+      }
     }
     disconnectedCallback() {
+      if (this._resizeObserver && this._containerEl) {
+        this._resizeObserver.unobserve(this._containerEl);
+        this._resizeObserver = null;
+        this._containerEl = null;
+      }
       if (this._swiper) {
         this._swiper.destroy(true, true);
         this._swiper = null;
@@ -129,13 +148,43 @@
       container.appendChild(wrapper);
       this.appendChild(container);
     }
-    _initSwiper() {
+    _initSwiperWithRetry(retryCount) {
       var container = this.querySelector(".swiper");
-      if (!container || this._swiper) return;
+      if (!container || this._swiper || this._swiperInitializing) return;
       if (container.offsetWidth === 0) {
-        whenReady(this, this._initSwiper.bind(this));
+        if (retryCount >= MAX_INIT_RETRIES) {
+          this._initSwiperWhenResized(container);
+          return;
+        }
+        var self = this;
+        setTimeout(function () {
+          self._initSwiperWithRetry(retryCount + 1);
+        }, INIT_RETRY_DELAY);
         return;
       }
+      this._swiperInitializing = true;
+      this._initSwiper(container);
+      this._swiperInitializing = false;
+    }
+    _initSwiperWhenResized(container) {
+      var self = this;
+      var observer = new ResizeObserver(function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+          if (entries[i].target.offsetWidth > 0 && !self._swiper) {
+            self._resizeObserver.unobserve(container);
+            self._resizeObserver = null;
+            self._initSwiper(container);
+            break;
+          }
+        }
+      });
+      self._resizeObserver = observer;
+      self._containerEl = container;
+      observer.observe(container);
+    }
+    _initSwiper(container) {
+      if (!container || this._swiper) return;
+      this._swiperInitializing = true;
 
       var spaceBetween = parseInt(this.getAttribute("space-between") || "12", 10);
       var rows = parseInt(this.getAttribute("rows") || "2", 10);
@@ -152,12 +201,22 @@
         resistanceRatio: 0.85,
       });
 
+      var self = this;
       var swiper = this._swiper;
       requestAnimationFrame(function () {
         if (swiper && !swiper.destroyed) {
           swiper.update();
         }
       });
+
+      this._resizeObserver = new ResizeObserver(function () {
+        if (swiper && !swiper.destroyed) {
+          swiper.update();
+        }
+      });
+      this._resizeObserver.observe(container);
+      this._containerEl = container;
+      this._swiperInitializing = false;
     }
   }
 

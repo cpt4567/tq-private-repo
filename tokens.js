@@ -90,62 +90,51 @@
       "label-one-normal-medium": {
         fontSize: "14px",
         fontWeight: 500,
-        lineHeight: "142.9%",
       },
       "body-two-normal-medium": {
         fontSize: "15px",
         fontWeight: 500,
-        lineHeight: "146.7%",
       },
       "caption-one-medium": {
         fontSize: "12px",
         fontWeight: 500,
-        lineHeight: "133.4%",
       },
       "caption-one-normal-medium": {
         fontSize: "12px",
         fontWeight: 500,
-        lineHeight: "133.4%",
       },
       "label-two-bold": {
         fontSize: "13px",
         fontWeight: 600,
-        lineHeight: "138.5%",
+     /*    lineHeight: "138.5%", */
       },
       "body-two-normal-bold": {
         fontSize: "15px",
         fontWeight: 600,
-        lineHeight: "146.7%",
       },
       "body-one-normal-bold": {
         fontSize: "16px",
         fontWeight: 600,
-        lineHeight: "150%",
       },
       "label-one-normal-bold": {
         fontSize: "14px",
         fontWeight: 600,
-        lineHeight: "142.9%",
       },
       "caption-two-medium": {
         fontSize: "11px",
         fontWeight: 500,
-        lineHeight: "127.3%",
       },
       "caption-two-bold": {
         fontSize: "11px",
         fontWeight: 600,
-        lineHeight: "127.3%",
       },
       "label-two-medium": {
         fontSize: "13px",
         fontWeight: 500,
-        lineHeight: "138.5%",
       },
       "label-two-regular": {
         fontSize: "13px",
         fontWeight: 400,
-        lineHeight: "138.5%",
       },
     },
   };

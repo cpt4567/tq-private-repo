@@ -143,7 +143,7 @@
           s[12] +
           ";right:" +
           s[16] +
-          ";z-index:10;display:flex;align-items:center;gap:" +
+          ";display:flex;align-items:center;gap:" +
           s[8] +
           ';pointer-events:none;">';
         html +=
