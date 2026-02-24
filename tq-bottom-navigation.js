@@ -76,7 +76,7 @@
       this._detachListeners();
     }
     static get observedAttributes() {
-      return ["list", "active", "active-class-name"];
+      return ["list", "active", "active-class-name", "variant"];
     }
     attributeChangedCallback(name) {
       if (name === "list") this._parseList();
@@ -141,8 +141,10 @@
       var active = this.active;
       var activeClass = this.getAttribute("active-class-name") || "";
       var activeStyle = parseActiveClassName(activeClass);
-      var labelNormal = c["semantic-label-normal"];
-      var bgWhite = c["semantic-static-white"];
+      var variant = (this.getAttribute("variant") || "").toLowerCase();
+      var isDark = variant === "dark";
+      var labelNormal = isDark ? "#989ba2" : c["semantic-label-normal"];
+      var bgWhite = isDark ? "transparent" : c["semantic-static-white"];
 
       var captionStyle =
         "font-family:Pretendard,system-ui,sans-serif;" +
@@ -214,8 +216,9 @@
 
       html += "</div>";
 
+      var hostBorder = isDark ? "none" : "1px solid #e1e2e4";
       var styles =
-        ":host{display:block;width:100%;border:1px solid #e1e2e4;}" +
+        ":host{display:block;width:100%;border:" + hostBorder + ";}" +
         ".tq-bottom-nav__item:hover{opacity:0.8}.tq-bottom-nav__item:focus{outline:none}.tq-bottom-nav__item:focus-visible{outline:2px solid " +
         c["semantic-primary-normal"] +
         ";outline-offset:2px}";

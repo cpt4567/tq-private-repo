@@ -229,6 +229,51 @@
       </div>
     </section>
 
+    <section>
+      <h2>Bottom Sheet (hug)</h2>
+      <tq-bottom-sheet>
+        <button slot="trigger" style="padding:12px 24px;background:#ff4802;color:#fff;border:none;border-radius:8px;cursor:pointer;">바텀시트 열기</button>
+        <div slot="content">
+          <p>바텀시트 내용입니다. 내용 높이에 맞춰 표시됩니다 (hug).</p>
+          <p>백드롭 클릭 시 닫힙니다.</p>
+        </div>
+      </tq-bottom-sheet>
+    </section>
+
+    <section>
+      <h2>Bottom Sheet (heading + 닫기 버튼)</h2>
+      <tq-bottom-sheet heading="바텀시트 제목" show-close>
+        <button slot="trigger" style="padding:12px 24px;background:#ff4802;color:#fff;border:none;border-radius:8px;cursor:pointer;">바텀시트 열기</button>
+        <div slot="content">
+          <p>상단 네비게이션(ModalNavigation) 스타일 적용.</p>
+          <p>타이틀 중앙, 닫기 버튼 우측, border-bottom.</p>
+        </div>
+      </tq-bottom-sheet>
+    </section>
+
+    <section>
+      <h2>Bottom Sheet (fill + 닫기 버튼)</h2>
+      <tq-bottom-sheet resize="fill" show-close>
+        <button slot="trigger" style="padding:12px 24px;background:#ff4802;color:#fff;border:none;border-radius:8px;cursor:pointer;">바텀시트 열기 (fill)</button>
+        <div slot="content">
+          <p>화면 95% 높이로 표시됩니다.</p>
+          <p style="height:300px;">스크롤 가능한 영역</p>
+          <p>내용이 많으면 스크롤됩니다.</p>
+        </div>
+      </tq-bottom-sheet>
+    </section>
+
+    <section>
+      <h2>Bottom Sheet (fixed 50%)</h2>
+      <tq-bottom-sheet resize="fixed" fixed-height="50%" show-close>
+        <button slot="trigger" style="padding:12px 24px;background:#ff4802;color:#fff;border:none;border-radius:8px;cursor:pointer;">바텀시트 열기 (50%)</button>
+        <div slot="content">
+          <p>고정 높이 50%로 표시됩니다.</p>
+        </div>
+      </tq-bottom-sheet>
+    </section>
+
+
     <script src="./tokens.js"></script>
     <script src="./tq-button.js"></script>
     <script src="./tq-badge.js"></script>
@@ -242,6 +287,7 @@
     <script src="./tq-bottom-navigation.js"></script>
     <script src="./tq-top-navigation.js"></script>
     <script src="./tq-thumbnail.js"></script>
+    <script src="./tq-bottom-sheet.js"></script>
 
     <script>
       (function () {
