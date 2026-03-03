@@ -103,6 +103,7 @@ cd tq-shadow-components
 ├── tokens.js              # 디자인 토큰 (필수)
 ├── shadow-dom.html        # 컴포넌트 데모 페이지
 ├── outer-wall.html        # 외벽 레이아웃 데모
+├── weekend-camping.html   # 이번 주말 가족 캠핑 화면 (검색 결과)
 ├── tq-button.js
 ├── tq-badge.js
 ├── tq-category-group.js
